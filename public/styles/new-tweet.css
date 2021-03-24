@@ -37,11 +37,12 @@ section{
   flex-direction:row;
   justify-content:space-between;
   height: 1.5em;
-  font-weight: 100;
 }
 
 .tweet-content{
-  font-weight: 300;
+  padding:0.5rem;
+  margin:2rem;
+  font-weight: 600;
 }
 
 .tweet-footer{
@@ -50,15 +51,16 @@ section{
   align-items: center;
   justify-content:space-between;
   border-top: 5px solid #545149;
-  height: 1em;
+  height: 1.5em;
+  font-size: 1rem;
 }
 
 .tweet-user{
   display: flex;
   flex-direction: row;
   height: 1.5em;
+  font-size:1em;
 }
-
 
 img{
   max-width: 100%;
