@@ -1,10 +1,5 @@
-.new-tweet{
-  padding:2px;
-  margin:0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+section{
+  margin:1em;
 }
 
 .tweet-button{
@@ -15,13 +10,57 @@
 
 #tweet-text{
   resize: none;
+  width:100%;
   border-color: #545149;
   border-width:0 0 5px 0;
   background-color: #f4f1ec;
+}
+
+.negative{
+  color:red;
+  font-weight: 600;
 }
 
 .below-tweet-text{
   display: flex;
   justify-content: space-between;
   align-items:flex-start;
+}
+
+.tweet-container{
+  border: 5px solid #545149;
+  padding:1rem
+}
+
+.tweet-header{
+  display:flex;
+  flex-direction:row;
+  justify-content:space-between;
+  height: 1.5em;
+  font-weight: 100;
+}
+
+.tweet-content{
+  font-weight: 300;
+}
+
+.tweet-footer{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content:space-between;
+  border-top: 5px solid #545149;
+  height: 1em;
+}
+
+.tweet-user{
+  display: flex;
+  flex-direction: row;
+  height: 1.5em;
+}
+
+
+img{
+  max-width: 100%;
+  max-height: 100%;
 }
