@@ -55,6 +55,15 @@ const renderTweets = (tweets) => {
 }
 
 $(document).ready(function() {
+  const loadTweets = () => {
+    $.ajax('http://localhost:8080/tweets', {
+      method: "GET",
+      success: (data) => {
+        renderTweets(data)
+      }
+    })
+  }
+  loadTweets();
   // renderTweets(data);
   $('form').on('submit', function(event){
     event.preventDefault();
