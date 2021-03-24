@@ -29,7 +29,8 @@ section{
 
 .tweet-container{
   border: 5px solid #545149;
-  padding:1rem
+  padding:1rem;
+  color: rgba(0,0,0, 0.2);
 }
 
 .tweet-header{
@@ -53,6 +54,7 @@ section{
   border-top: 5px solid #545149;
   height: 1.5em;
   font-size: 1rem;
+  font-weight: 600;
 }
 
 .tweet-user{
@@ -65,4 +67,9 @@ section{
 img{
   max-width: 100%;
   max-height: 100%;
+}
+
+.emphasis{
+  box-shadow: 10px 5px 2px cornflowerblue;
+  color: #545149FF;
 }
