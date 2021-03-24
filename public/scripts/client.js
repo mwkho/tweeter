@@ -4,8 +4,9 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 const dateConvert = (time) => {
-  let postedDuration = new Date(time);
-  const difference = Date.now() - postedDuration;
+  const difference = Date.now() - new Date(time);
+  let postedDuration = (new Date(time)).toDateString();
+  console.log(difference)
   // posted  now or X (seconds, minutes, or days ago), up to a month then insert date
   if (difference < 1000){
     postedDuration ='now';
@@ -21,9 +22,7 @@ const dateConvert = (time) => {
   }
   if (difference >= 86400000 && difference < 2419200000){
     postedDuration = `${Math.floor(difference/86400000)} days ago`;
-  } else {
-    postedDuration = postedDuration.toDateString();
-  }
+  } 
   return postedDuration;
 }
 
@@ -55,35 +54,16 @@ const renderTweets = (tweets) => {
   })
 }
 
-// Fake data taken from initial-tweets.json
-const data = [
-  {
-    "user": {
-      "name": "Newton",
-      "avatars": "https://i.imgur.com/73hZDYK.png"
-      ,
-      "handle": "@SirIsaac"
-    },
-    "content": {
-      "text": "If I have seen further it is by standing on the shoulders of giants"
-    },
-    "created_at": 1461116232227
-  },
-  {
-    "user": {
-      "name": "Descartes",
-      "avatars": "https://i.imgur.com/nlhLi3I.png",
-      "handle": "@rd" },
-    "content": {
-      "text": "Je pense , donc je suis"
-    },
-    "created_at": 1461113959088
-  }
-]
-
-
 $(document).ready(function() {
-  renderTweets(data);
+  // renderTweets(data);
+  $('form').on('submit', function(event){
+    event.preventDefault();
+    $.ajax({ 
+      method: 'POST',
+      url: 'localhost:8080/',
+      data: $(this).serialize()
+    })
+  });
 
   $('article.tweet').hover(function() {
     $(this).addClass('emphasis');
