@@ -7,23 +7,23 @@ const dateConvert = (time) => {
   const difference = Date.now() - new Date(time);
   let postedDuration = (new Date(time)).toDateString();
   // posted  now or X (seconds, minutes, or days ago), up to a month then insert date
-  if (difference < 1000){
-    postedDuration ='now';
+  if (difference < 1000) {
+    postedDuration = 'now';
   }
-  if (difference >= 1000 && difference < 60000){
-    postedDuration = `${Math.floor(difference/1000)} seconds ago`;
+  if (difference >= 1000 && difference < 60000) {
+    postedDuration = `${Math.floor(difference / 1000)} seconds ago`;
   }
-  if (difference >= 60000 && difference < 3600000){
-    postedDuration = `${Math.floor(difference/60000)} minutes ago`;
+  if (difference >= 60000 && difference < 3600000) {
+    postedDuration = `${Math.floor(difference / 60000)} minutes ago`;
   }
-  if (difference >= 3600000 && difference < 86400000){
-    postedDuration = `${Math.floor(difference/3600000)} hours ago`;
+  if (difference >= 3600000 && difference < 86400000) {
+    postedDuration = `${Math.floor(difference / 3600000)} hours ago`;
   }
-  if (difference >= 86400000 && difference < 2419200000){
-    postedDuration = `${Math.floor(difference/86400000)} days ago`;
-  } 
+  if (difference >= 86400000 && difference < 2419200000) {
+    postedDuration = `${Math.floor(difference / 86400000)} days ago`;
+  }
   return postedDuration;
-}
+};
 
 let createTweetElement = (tweet) => {
   const user = tweet.user;
@@ -44,58 +44,60 @@ let createTweetElement = (tweet) => {
           </footer>
         </article>`;
   return formattedTweet;
-}
+};
 
 // Function to format tweet data array and add to the tweet container
 const renderTweets = (tweets) => {
   tweets.forEach((tweet) => {
     $('#tweet-container').append(createTweetElement(tweet));
-  })
-}
+  });
+};
 
 const tweetIsValid = (tweet) => {
   const checkTweet = tweet.trim();
-    if (checkTweet.length === 0){
-      alert("Tweets cannot be empty")
-      return false
-      }
-    if (checkTweet.length > 140){
-      alert("Message too long");
-      return false;
-    }
-
-    return true;  
+  if (checkTweet.length === 0) {
+    alert("Tweets cannot be empty");
+    return false;
+  }
+  if (checkTweet.length > 140) {
+    alert("Message too long");
+    return false;
   }
 
+  return true;
+};
+
 $(document).ready(function() {
+  
+  const loadTweets = () => {
+    $.ajax({
+      method: "GET",
+      url:'/tweets',
+      success: (data) => {
+        renderTweets(data);
+      }
+    });
+  };
+
   $('form').on('submit', function(event){
     event.preventDefault();
     if (tweetIsValid($('#tweet-text').val())){
       $.ajax({ 
         method: 'POST',
-        url: 'localhost:8080/',
-        data: $(this).serialize()
+        url: '/tweets',
+        data: $(this).serialize(),
+        success: () => {
+          loadTweets();
+        }
       })
     }
   });
 
-  const loadTweets = () => {
-    $.ajax('http://localhost:8080/tweets', {          
-      method: "GET",
-      success: (data) => {
-        renderTweets(data)
-      }
-    })
-  }
-  loadTweets();
-
-
-  $('article.tweet').hover(function() {
+  $('.tweet').hover(function() {
     $(this).addClass('emphasis');
   } , function() {
-      $(this).removeClass('emphasis')
-    }
-  );
+    $(this).removeClass('emphasis');
+  });
 });
 
 
