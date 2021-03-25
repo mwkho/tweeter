@@ -25,6 +25,12 @@ const dateConvert = (time) => {
   return postedDuration;
 };
 
+const escape =  function(str) {
+  let div = document.createElement('div');
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+}
+
 let createTweetElement = (tweet) => {
   const user = tweet.user;
   let formattedTweet = `<article class="tweet">
@@ -36,7 +42,7 @@ let createTweetElement = (tweet) => {
             <p>${user.handle}</p>
           </header>
           <p class="tweet-content">
-            ${tweet.content.text}
+            ${escape(tweet.content.text)}
           </p>
           <footer class="tweet-footer">
             <p> Posted ${dateConvert(tweet.created_at)}</p>
@@ -74,7 +80,6 @@ $(document).ready(function() {
       method: "GET",
       url:'/tweets',
       success: (data) => {
-        $('.tweet').remove();
         renderTweets(data);
       }
     });
@@ -91,6 +96,7 @@ $(document).ready(function() {
         data: $(this).serialize(),
         success: () => {
           $('#tweet-text').val('');
+          $('.tweet').remove();
           loadTweets();
         }
       })
