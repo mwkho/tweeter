@@ -6,7 +6,6 @@
 const dateConvert = (time) => {
   const difference = Date.now() - new Date(time);
   let postedDuration = (new Date(time)).toDateString();
-  console.log(difference)
   // posted  now or X (seconds, minutes, or days ago), up to a month then insert date
   if (difference < 1000){
     postedDuration ='now';
@@ -54,9 +53,34 @@ const renderTweets = (tweets) => {
   })
 }
 
+const tweetIsValid = (tweet) => {
+  const checkTweet = tweet.trim();
+    if (checkTweet.length === 0){
+      alert("Tweets cannot be empty")
+      return false
+      }
+    if (checkTweet.length > 140){
+      alert("Message too long");
+      return false;
+    }
+
+    return true;  
+  }
+
 $(document).ready(function() {
+  $('form').on('submit', function(event){
+    event.preventDefault();
+    if (tweetIsValid($('#tweet-text').val())){
+      $.ajax({ 
+        method: 'POST',
+        url: 'localhost:8080/',
+        data: $(this).serialize()
+      })
+    }
+  });
+
   const loadTweets = () => {
-    $.ajax('http://localhost:8080/tweets', {
+    $.ajax('http://localhost:8080/tweets', {          
       method: "GET",
       success: (data) => {
         renderTweets(data)
@@ -64,15 +88,7 @@ $(document).ready(function() {
     })
   }
   loadTweets();
-  // renderTweets(data);
-  $('form').on('submit', function(event){
-    event.preventDefault();
-    $.ajax({ 
-      method: 'POST',
-      url: 'localhost:8080/',
-      data: $(this).serialize()
-    })
-  });
+
 
   $('article.tweet').hover(function() {
     $(this).addClass('emphasis');
