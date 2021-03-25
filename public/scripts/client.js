@@ -49,7 +49,7 @@ let createTweetElement = (tweet) => {
 // Function to format tweet data array and add to the tweet container
 const renderTweets = (tweets) => {
   tweets.forEach((tweet) => {
-    $('#tweet-container').append(createTweetElement(tweet));
+    $('#tweet-container').prepend(createTweetElement(tweet));
   });
 };
 
@@ -74,11 +74,14 @@ $(document).ready(function() {
       method: "GET",
       url:'/tweets',
       success: (data) => {
+        $('.tweet').remove();
         renderTweets(data);
       }
     });
-  };
 
+  };
+  loadTweets();
+  $('#tweet-text').val('');
   $('form').on('submit', function(event){
     event.preventDefault();
     if (tweetIsValid($('#tweet-text').val())){
@@ -87,6 +90,8 @@ $(document).ready(function() {
         url: '/tweets',
         data: $(this).serialize(),
         success: () => {
+          $('#tweet-text').val('');
+          // $('#tweet-container').replaceWith('');
           loadTweets();
         }
       })
