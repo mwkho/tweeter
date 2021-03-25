@@ -59,55 +59,55 @@ const renderTweets = (tweets) => {
   });
 };
 
-const setErrorText = (length) => {
-
-}
+const loadTweets = () => {
+  $.ajax({
+    method: "GET",
+    url:'/tweets',
+    success: (data) => {
+      renderTweets(data);
+    }
+  });
+};
 
 $(document).ready(function() {
   const textLimit = 140;
-  const loadTweets = () => {
-    $.ajax({
-      method: "GET",
-      url:'/tweets',
-      success: (data) => {
-        renderTweets(data);
-      }
-    });
-  };
-
+ 
+  // for when the mouse hovers a tweet, make the shawdow show
+  $('.tweet').on('click',function () {
+      $(this).addClass('hover');
+    }
+    //, function () {
+    //   $(this).removeClass('hover');
+    // }
+  );
   loadTweets();
   $('#tweet-text').val('');
-  
-  $('form').on('submit', function(event){
-    event.preventDefault();
-    $('.error' ).hide()
-    length = $('#tweet-text').val().trim().length;
-    if(length === 0){
-      $('.error').text('Tweets that are empty or with only whitespace are not alllowed!');
-      $('.error').slideDown(300);
-    }
-    if(length > textLimit){
-      $('.error').text(`Tweets must be ${textLimit} non whitespace characters or less. Yours is ${length} long.`);
-      $('.error').slideDown(300);
-    }
-    if (length > 0 && length <= textLimit){
-      $.ajax({ 
-        method: 'POST',
-        url: '/tweets',
-        data: $(this).serialize(),
-        success: () => {
-          $('#tweet-text').val('');
-          $('.tweet').remove();
-          loadTweets();
-        }
-      })
-    }
-  });
 
-  $('.tweet').hover(function() {
-    $(this).addClass('emphasis');
-  } , function() {
-    $(this).removeClass('emphasis');
-  });
+  
+  // $('form').on('submit', function(event){
+  //   event.preventDefault();
+  //   $('.error' ).hide()
+  //   length = $('#tweet-text').val().trim().length;
+  //   if(length === 0){
+  //     $('.error').text('Tweets that are empty or with only whitespace are not alllowed!');
+  //     $('.error').slideDown(300);
+  //   }
+  //   if(length > textLimit){
+  //     $('.error').text(`Tweets must be ${textLimit} non whitespace characters or less. Yours is ${length} long.`);
+  //     $('.error').slideDown(300);
+  //   }
+  //   if (length > 0 && length <= textLimit){
+  //     $.ajax({ 
+  //       method: 'POST',
+  //       url: '/tweets',
+  //       data: $(this).serialize(),
+  //       success: () => {
+  //         $('#tweet-text').val('');
+  //         $('.tweet').remove();
+  //         loadTweets();
+  //       }
+  //     })
+  //   }
+  // });
 });
 

@@ -47,6 +47,7 @@ section{
 }
 
 .tweet-content{
+  overflow-wrap: break-word;
   padding:0.5rem;
   margin:2rem;
   font-weight: 600;
@@ -74,7 +75,7 @@ img{
   max-height: 100%;
 }
 
-.emphasis{
+.hover{
   box-shadow: 10px 5px 2px cornflowerblue;
   color: #545149FF;
 }
