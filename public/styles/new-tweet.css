@@ -33,6 +33,7 @@ section{
   margin:1em;
   padding:1rem;
   color: rgba(0,0,0, 0.2);
+  max-height:750px
 }
 .tweet-header{
   display:flex;
@@ -43,7 +44,8 @@ section{
   background-image: none;
   height: 2em;
   font-size:2rem;
-
+  flex-wrap: wrap;
+  margin: 1rem;
 }
 
 .tweet-content{
@@ -66,7 +68,7 @@ section{
 
 .tweet-user{
   display: flex;
-  flex-direction: row;
+  align-items: center;
   height: 1.5em;
 }
 

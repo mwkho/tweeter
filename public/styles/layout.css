@@ -20,7 +20,7 @@ body {
   font-size: 24px;
   font-family:'Source Sans Pro', sans-serif;
   position: relative;
-  top: 72px;
+  top: 70px;
   display: flex;
 }
 
@@ -35,4 +35,42 @@ main{
 /*
  * Additional CSS can be defined below or in other CSS files, as per instructions
  */ 
+
+/*  layout for tablets */
+@media only screen and (min-width: 768px) and (max-width:1023px) {
+  header.tweet-header{
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap:wrap;
+    height:3em;
+  }
+
+} 
+/* layouts for phones */
+@media only screen and (max-width:767px){
+  nav{
+    font-size: 1rem;
+  }
+  body{
+    display:flex;
+    flex-direction: column;
+  }
+
+  header.nav-header{
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+    margin:0 0 0 0;
+    position: unset;
+  }
+
+  header.tweet-header{
+    font-size: 1em;
+  }
+  
+  header > p{
+    margin:0.5em;
+  }
+}
 
