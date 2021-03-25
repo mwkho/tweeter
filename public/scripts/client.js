@@ -91,7 +91,6 @@ $(document).ready(function() {
         data: $(this).serialize(),
         success: () => {
           $('#tweet-text').val('');
-          // $('#tweet-container').replaceWith('');
           loadTweets();
         }
       })
