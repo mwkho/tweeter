@@ -1,7 +1,7 @@
 .nav-header{
   display:flex;
   height:400px;
-  width:auto;
+  width:400px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -9,7 +9,7 @@
   background-image: url("https://www.transparenttextures.com/patterns/az-subtle.png");
   margin: 2rem; 
   position:sticky;
-  top:100px;
+  top:104px;
 }
 
 
