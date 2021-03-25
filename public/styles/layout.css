@@ -21,6 +21,7 @@ body {
   font-family:'Source Sans Pro', sans-serif;
   position: relative;
   top: 72px;
+  display: flex;
 }
 
 main{
