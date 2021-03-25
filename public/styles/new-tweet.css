@@ -78,3 +78,11 @@ img{
   box-shadow: 10px 5px 2px cornflowerblue;
   color: #545149FF;
 }
+
+.error{
+  display: flex;
+  color:red;
+  justify-content: center;
+  margin: 1rem;
+  font-weight: 600;
+}

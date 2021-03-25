@@ -59,22 +59,12 @@ const renderTweets = (tweets) => {
   });
 };
 
-const tweetIsValid = (tweet) => {
-  const checkTweet = tweet.trim();
-  if (checkTweet.length === 0) {
-    alert("Tweets cannot be empty");
-    return false;
-  }
-  if (checkTweet.length > 140) {
-    alert("Message too long");
-    return false;
-  }
+const setErrorText = (length) => {
 
-  return true;
-};
+}
 
 $(document).ready(function() {
-  
+  const textLimit = 140;
   const loadTweets = () => {
     $.ajax({
       method: "GET",
@@ -83,13 +73,24 @@ $(document).ready(function() {
         renderTweets(data);
       }
     });
-
   };
+
   loadTweets();
   $('#tweet-text').val('');
+  
   $('form').on('submit', function(event){
     event.preventDefault();
-    if (tweetIsValid($('#tweet-text').val())){
+    $('.error' ).hide()
+    length = $('#tweet-text').val().trim().length;
+    if(length === 0){
+      $('.error').text('Tweets that are empty or with only whitespace are not alllowed!');
+      $('.error').slideDown(300);
+    }
+    if(length > textLimit){
+      $('.error').text(`Tweets must be ${textLimit} non whitespace characters or less. Yours is ${length} long.`);
+      $('.error').slideDown(300);
+    }
+    if (length > 0 && length <= textLimit){
       $.ajax({ 
         method: 'POST',
         url: '/tweets',
@@ -109,6 +110,4 @@ $(document).ready(function() {
     $(this).removeClass('emphasis');
   });
 });
-
-
 
