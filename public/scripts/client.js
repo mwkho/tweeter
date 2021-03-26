@@ -46,7 +46,11 @@ let createTweetElement = (tweet) => {
           </p>
           <footer class="tweet-footer">
             <p> Posted ${dateConvert(tweet.created_at)}</p>
-            <img src="../images/profile-hex.png"> 
+            <div>
+            <i class="flaticon-like"></i>
+            <i class="flaticon-comment"></i>
+            <i class="flaticon-share"></i>
+            </div>
           </footer>
         </article>`;
   return formattedTweet;
@@ -71,43 +75,34 @@ const loadTweets = () => {
 
 $(document).ready(function() {
   const textLimit = 140;
- 
-  // for when the mouse hovers a tweet, make the shawdow show
-  $('.tweet').on('click',function () {
-      $(this).addClass('hover');
-    }
-    //, function () {
-    //   $(this).removeClass('hover');
-    // }
-  );
   loadTweets();
   $('#tweet-text').val('');
 
   
-  // $('form').on('submit', function(event){
-  //   event.preventDefault();
-  //   $('.error' ).hide()
-  //   length = $('#tweet-text').val().trim().length;
-  //   if(length === 0){
-  //     $('.error').text('Tweets that are empty or with only whitespace are not alllowed!');
-  //     $('.error').slideDown(300);
-  //   }
-  //   if(length > textLimit){
-  //     $('.error').text(`Tweets must be ${textLimit} non whitespace characters or less. Yours is ${length} long.`);
-  //     $('.error').slideDown(300);
-  //   }
-  //   if (length > 0 && length <= textLimit){
-  //     $.ajax({ 
-  //       method: 'POST',
-  //       url: '/tweets',
-  //       data: $(this).serialize(),
-  //       success: () => {
-  //         $('#tweet-text').val('');
-  //         $('.tweet').remove();
-  //         loadTweets();
-  //       }
-  //     })
-  //   }
-  // });
+  $('form').on('submit', function(event){
+    event.preventDefault();
+    $('.error' ).hide()
+    length = $('#tweet-text').val().trim().length;
+    if(length === 0){
+      $('.error').text('Tweets that are empty or with only whitespace are not alllowed!');
+      $('.error').slideDown(300);
+    }
+    if(length > textLimit){
+      $('.error').text(`Tweets must be ${textLimit} non whitespace characters or less. Yours is ${length} long.`);
+      $('.error').slideDown(300);
+    }
+    if (length > 0 && length <= textLimit){
+      $.ajax({ 
+        method: 'POST',
+        url: '/tweets',
+        data: $(this).serialize(),
+        success: () => {
+          $('#tweet-text').val('');
+          $('.tweet').remove();
+          loadTweets();
+        }
+      })
+    }
+  });
 });
 
