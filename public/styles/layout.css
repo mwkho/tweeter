@@ -28,7 +28,7 @@ main{
   margin:auto;
   flex-direction: column;
   justify-content: center;
-  width:90%;
+  width:65%;
   background-color:#f4f1ec;
 }
 
@@ -40,9 +40,7 @@ main{
 @media only screen and (min-width: 768px) and (max-width:1023px) {
   header.tweet-header{
     flex-direction: row;
-    justify-content: flex-start;
     flex-wrap:wrap;
-    height:3em;
   }
 
 } 
@@ -51,6 +49,10 @@ main{
   nav{
     font-size: 1rem;
   }
+  main.container{
+    width:90%
+  }
+
   body{
     display:flex;
     flex-direction: column;
@@ -67,10 +69,13 @@ main{
 
   header.tweet-header{
     font-size: 1em;
+    flex-direction: column;
+    align-items: flex-start;
   }
-  
+
   header > p{
     margin:0.5em;
+    margin-bottom: 0em;
   }
 }
 
