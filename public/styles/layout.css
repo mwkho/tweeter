@@ -17,6 +17,7 @@ html {
 body {
   color: #545149;
   background-color: #f4f1ec;
+  background-image: url("https://www.transparenttextures.com/patterns/az-subtle.png");
   font-size: 24px;
   font-family:'Source Sans Pro', sans-serif;
   position: relative;
@@ -29,6 +30,7 @@ main{
   flex-direction: column;
   justify-content: center;
   width:65%;
+  background-image: url("https://www.transparenttextures.com/patterns/az-subtle.png");
   background-color:#f4f1ec;
 }
 
