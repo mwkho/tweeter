@@ -29,7 +29,7 @@ const escape =  function(str) {
   let div = document.createElement('div');
   div.appendChild(document.createTextNode(str));
   return div.innerHTML;
-}
+};
 
 let createTweetElement = (tweet) => {
   const user = tweet.user;
@@ -79,22 +79,22 @@ $(document).ready(function() {
   $('#tweet-text').val('');
 
   
-  $('form').on('submit', function(event){
+  $('form').on('submit', function(event) {
     event.preventDefault();
-    length = $('#tweet-text').val().length;
+    let length = $('#tweet-text').val().length;
 
     // error handling
-    $('.error' ).hide()
-    if(length === 0){
+    $('.error').hide();
+    if (length === 0) {
       $('.error').text('Empty tweets are not allowed!');
       $('.error').slideDown(300);
     }
-    if(length > textLimit){
+    if (length > textLimit) {
       $('.error').text(`Tweets must be ${textLimit} characters or less. Yours is ${length} long.`);
       $('.error').slideDown(300);
     }
-    if (length > 0 && length <= textLimit){
-      $.ajax({ 
+    if (length > 0 && length <= textLimit) {
+      $.ajax({
         method: 'POST',
         url: '/tweets',
         data: $(this).serialize(),
@@ -106,12 +106,12 @@ $(document).ready(function() {
             method: "GET",
             url:'/tweets',
             success: (data) => {
-              renderTweets(data.slice(data.length - 1))
+              renderTweets(data.slice(data.length - 1));
             }
-          })
-          $('.counter').html(textLimit)
+          });
+          $('.counter').html(textLimit);
         }
-      })
+      });
     }
   });
 });
