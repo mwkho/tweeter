@@ -4,7 +4,8 @@
     <!-- Meta Information -->
     <title>Tweeter - Home Page</title>
 
-
+    <!-- Disabling viewport-->
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
     <!-- External CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" type="text/css" />
 
@@ -22,7 +23,9 @@
     <!-- New tweet CSS-->
     <link rel="stylesheet" href="/styles/new-tweet.css" type="text/css" />
 
-
+    <!-- Social Media Icons-->
+    <link rel="stylesheet" type="text/css" href="/images/icons/flaticon.css"> 
+    
     <!-- App JS -->
     <script type="text/javascript" src="/scripts/client.js"></script>
     <script type="text/javascript" src="/scripts/composer-char-count.js"></script>
@@ -49,6 +52,7 @@
     <main class="container">
       <section class="new-tweet">
         <h2>Compose Tweet</h2>
+        <p class='error'></p>
         <form method="POST" action="/tweets/">
           <label for="tweet-text"></label>
           <textarea name="text" id="tweet-text" placeholder="What are you humming about"></textarea>

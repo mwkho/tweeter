@@ -25,6 +25,12 @@ const dateConvert = (time) => {
   return postedDuration;
 };
 
+const escape =  function(str) {
+  let div = document.createElement('div');
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+};
+
 let createTweetElement = (tweet) => {
   const user = tweet.user;
   let formattedTweet = `<article class="tweet">
@@ -36,11 +42,15 @@ let createTweetElement = (tweet) => {
             <p>${user.handle}</p>
           </header>
           <p class="tweet-content">
-            ${tweet.content.text}
+            ${escape(tweet.content.text)}
           </p>
           <footer class="tweet-footer">
             <p> Posted ${dateConvert(tweet.created_at)}</p>
-            <img src="../images/profile-hex.png"> 
+            <div>
+            <i class="flaticon-like"></i>
+            <i class="flaticon-comment"></i>
+            <i class="flaticon-share"></i>
+            </div>
           </footer>
         </article>`;
   return formattedTweet;
@@ -53,56 +63,56 @@ const renderTweets = (tweets) => {
   });
 };
 
-const tweetIsValid = (tweet) => {
-  const checkTweet = tweet.trim();
-  if (checkTweet.length === 0) {
-    alert("Tweets cannot be empty");
-    return false;
-  }
-  if (checkTweet.length > 140) {
-    alert("Message too long");
-    return false;
-  }
-
-  return true;
+const loadTweets = () => {
+  $.ajax({
+    method: "GET",
+    url:'/tweets',
+    success: (data) => {
+      renderTweets(data);
+    }
+  });
 };
 
 $(document).ready(function() {
-  
-  const loadTweets = () => {
-    $.ajax({
-      method: "GET",
-      url:'/tweets',
-      success: (data) => {
-        $('.tweet').remove();
-        renderTweets(data);
-      }
-    });
-
-  };
+  const textLimit = 140;
   loadTweets();
   $('#tweet-text').val('');
-  $('form').on('submit', function(event){
+
+  
+  $('form').on('submit', function(event) {
     event.preventDefault();
-    if (tweetIsValid($('#tweet-text').val())){
-      $.ajax({ 
+    let length = $('#tweet-text').val().trim().length;
+
+    // error handling
+    $('.error').hide();
+    if (length === 0) {
+      $('.error').text('Empty tweets are not allowed!');
+      $('.error').slideDown(300);
+    }
+    if (length > textLimit) {
+      $('.error').text(`Tweets must be ${textLimit} non whitespace characters or less. Yours is ${length} long.`);
+      $('.error').slideDown(300);
+    }
+    if (length > 0 && length <= textLimit) {
+      $.ajax({
         method: 'POST',
         url: '/tweets',
         data: $(this).serialize(),
         success: () => {
           $('#tweet-text').val('');
-          loadTweets();
+          // $('.tweet').remove();
+          // loadTweets();
+          $.ajax({
+            method: "GET",
+            url:'/tweets',
+            success: (data) => {
+              renderTweets(data.slice(data.length - 1));
+            }
+          });
+          $('.counter').html(textLimit);
         }
-      })
+      });
     }
   });
-
-  $('.tweet').hover(function() {
-    $(this).addClass('emphasis');
-  } , function() {
-    $(this).removeClass('emphasis');
-  });
 });
-
-
 

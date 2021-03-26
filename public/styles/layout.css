@@ -17,21 +17,67 @@ html {
 body {
   color: #545149;
   background-color: #f4f1ec;
+  background-image: url("https://www.transparenttextures.com/patterns/az-subtle.png");
   font-size: 24px;
   font-family:'Source Sans Pro', sans-serif;
   position: relative;
-  top: 72px;
+  top: 70px;
+  display: flex;
 }
 
 main{
   margin:auto;
   flex-direction: column;
   justify-content: center;
-  width:90%;
+  width:65%;
+  background-image: url("https://www.transparenttextures.com/patterns/az-subtle.png");
   background-color:#f4f1ec;
 }
 
 /*
  * Additional CSS can be defined below or in other CSS files, as per instructions
  */ 
+
+/*  layout for tablets */
+@media only screen and (min-width: 768px) and (max-width:1023px) {
+  header.tweet-header{
+    flex-direction: row;
+    flex-wrap:wrap;
+  }
+
+} 
+/* layouts for phones */
+@media only screen and (max-width:767px){
+  nav{
+    font-size: 1rem;
+  }
+  main.container{
+    width:90%
+  }
+
+  body{
+    display:flex;
+    flex-direction: column;
+  }
+
+  header.nav-header{
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+    margin:0 0 0 0;
+    position: unset;
+  }
+
+  header.tweet-header{
+    font-size: 1em;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  header > p{
+    margin:0.5em;
+    margin-bottom: 0em;
+  }
+}
 

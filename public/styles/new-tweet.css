@@ -14,6 +14,7 @@ section{
   border-color: #545149;
   border-width:0 0 5px 0;
   background-color: #f4f1ec;
+  background-image: url("https://www.transparenttextures.com/patterns/az-subtle.png");
 }
 
 .negative{
@@ -33,22 +34,25 @@ section{
   margin:1em;
   padding:1rem;
   color: rgba(0,0,0, 0.2);
+  max-height:auto;
 }
 .tweet-header{
   display:flex;
   flex-direction:row;
   justify-content:space-between;
   align-items: center;
+  flex-wrap: wrap;
   background-color: #f4f1ec;
   background-image: none;
-  height: 2em;
   font-size:2rem;
-
+  margin: 0 1rem 0 1rem;
+  background-image: url("https://www.transparenttextures.com/patterns/az-subtle.png");
 }
 
 .tweet-content{
+  overflow-wrap: break-word;
   padding:0.5rem;
-  margin:2rem;
+  margin:0rem 1rem 1rem 1rem;
   font-weight: 600;
 }
 
@@ -58,14 +62,15 @@ section{
   align-items: center;
   justify-content:space-between;
   border-top: 5px solid #545149;
-  height: 1.5em;
+  height: 2rem;
+  padding: 1rem 1rem 0 0;
   font-size: 1rem;
   font-weight: 600;
 }
 
 .tweet-user{
   display: flex;
-  flex-direction: row;
+  align-items: center;
   height: 1.5em;
 }
 
@@ -74,7 +79,15 @@ img{
   max-height: 100%;
 }
 
-.emphasis{
+.tweet:hover{
   box-shadow: 10px 5px 2px cornflowerblue;
   color: #545149FF;
+}
+
+.error{
+  display: flex;
+  color:red;
+  justify-content: center;
+  margin: 1rem;
+  font-weight: 600;
 }
