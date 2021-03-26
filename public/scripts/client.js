@@ -81,7 +81,7 @@ $(document).ready(function() {
   
   $('form').on('submit', function(event) {
     event.preventDefault();
-    let length = $('#tweet-text').val().length;
+    let length = $('#tweet-text').val().trim().length;
 
     // error handling
     $('.error').hide();
@@ -90,7 +90,7 @@ $(document).ready(function() {
       $('.error').slideDown(300);
     }
     if (length > textLimit) {
-      $('.error').text(`Tweets must be ${textLimit} characters or less. Yours is ${length} long.`);
+      $('.error').text(`Tweets must be ${textLimit} non whitespace characters or less. Yours is ${length} long.`);
       $('.error').slideDown(300);
     }
     if (length > 0 && length <= textLimit) {
