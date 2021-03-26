@@ -81,15 +81,16 @@ $(document).ready(function() {
   
   $('form').on('submit', function(event){
     event.preventDefault();
-    $('.error' ).hide()
-    console.log($('#tweet-text').val())
     length = $('#tweet-text').val().length;
+
+    // error handling
+    $('.error' ).hide()
     if(length === 0){
       $('.error').text('Empty tweets are not allowed!');
       $('.error').slideDown(300);
     }
     if(length > textLimit){
-      $('.error').text(`Tweets must be ${textLimit} non whitespace characters or less. Yours is ${length} long.`);
+      $('.error').text(`Tweets must be ${textLimit} characters or less. Yours is ${length} long.`);
       $('.error').slideDown(300);
     }
     if (length > 0 && length <= textLimit){
@@ -99,8 +100,15 @@ $(document).ready(function() {
         data: $(this).serialize(),
         success: () => {
           $('#tweet-text').val('');
-          $('.tweet').remove();
-          loadTweets();
+          // $('.tweet').remove();
+          // loadTweets();
+          $.ajax({
+            method: "GET",
+            url:'/tweets',
+            success: (data) => {
+              renderTweets(data.slice(data.length - 1))
+            }
+          })
           $('.counter').html(textLimit)
         }
       })
