@@ -82,9 +82,10 @@ $(document).ready(function() {
   $('form').on('submit', function(event){
     event.preventDefault();
     $('.error' ).hide()
-    length = $('#tweet-text').val().trim().length;
+    console.log($('#tweet-text').val())
+    length = $('#tweet-text').val().length;
     if(length === 0){
-      $('.error').text('Tweets that are empty or with only whitespace are not alllowed!');
+      $('.error').text('Empty tweets are not allowed!');
       $('.error').slideDown(300);
     }
     if(length > textLimit){
@@ -100,6 +101,7 @@ $(document).ready(function() {
           $('#tweet-text').val('');
           $('.tweet').remove();
           loadTweets();
+          $('.counter').html(textLimit)
         }
       })
     }
