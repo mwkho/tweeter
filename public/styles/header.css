@@ -1,6 +1,6 @@
 .nav-header{
-  display:flex;
-  width:400px;
+  display: flex;
+  width: 400px;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
@@ -13,10 +13,10 @@
 
 }
 .user-image{
-  top:94px;
+  top: 94px;
 }
 
 .user-name{
-  top:360px;
+  top: 360px;
 }
 
