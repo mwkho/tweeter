@@ -26,12 +26,12 @@ body {
 }
 
 main{
-  margin:auto;
+  margin: auto;
   flex-direction: column;
   justify-content: center;
-  width:65%;
+  width: 65%;
   background-image: url("https://www.transparenttextures.com/patterns/az-subtle.png");
-  background-color:#f4f1ec;
+  background-color: #f4f1ec;
 }
 
 /*
@@ -42,7 +42,7 @@ main{
 @media only screen and (min-width: 768px) and (max-width:1023px) {
   header.tweet-header{
     flex-direction: row;
-    flex-wrap:wrap;
+    flex-wrap: wrap;
   }
 
 } 
@@ -52,23 +52,26 @@ main{
     font-size: 1rem;
   }
   main.container{
-    width:90%
+    width: 90%;
   }
 
   body{
-    display:flex;
+    display: flex;
     flex-direction: column;
   }
 
   header.nav-header{
     width: 100%;
+    height: 400px;
     justify-content: center;
     align-items: center;
-    width:100%;
-    margin:0 0 0 0;
-    position: unset;
+    width: 100%;
+    margin: 0 0 0 0;
   }
 
+  header.nav-header > div{
+   position: unset;
+  }
   header.tweet-header{
     font-size: 1em;
     flex-direction: column;
@@ -76,7 +79,7 @@ main{
   }
 
   header > p{
-    margin:0.5em;
+    margin: 0.5em;
     margin-bottom: 0em;
   }
 }
