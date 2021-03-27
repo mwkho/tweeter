@@ -62,13 +62,16 @@ main{
 
   header.nav-header{
     width: 100%;
+    height: 400px;
     justify-content: center;
     align-items: center;
     width: 100%;
     margin: 0 0 0 0;
-    position: unset;
   }
 
+  header.nav-header > div{
+   position: unset;
+  }
   header.tweet-header{
     font-size: 1em;
     flex-direction: column;
