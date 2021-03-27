@@ -2,7 +2,19 @@
 
 Tweeter is a simple, single-page Twitter clone.
 
-This repository is the starter code for the project: Students will fork and clone this repository, then build upon it to practice their HTML, CSS, JS, jQuery and AJAX front-end skills, and their Node, Express and MongoDB back-end skills.
+Built upon on HTML, jQuuery, CSS, and AJAX for front-end, and Node and Express for back-end. 
+
+Current features include: 
+:heavy_check_mark: 140 character limit on tweets (Font changes to red as character limit is surpassed)
+:heavy_check_mark: Tweets pop out upon hover
+:heavy_check_mark: Dedicated mobile display
+
+
+
+## Screenshots
+![Screenshot of Tweets with hover effect](https://raw.githubusercontent.com/mwkho/tweeter/master/docs/hover.png)
+![Screenshot of over limit text with error](https://raw.githubusercontent.com/mwkho/tweeter/master/docs/error-tweet.png)
+![Screenshot of mobile display](https://raw.githubusercontent.com/mwkho/tweeter/master/docs/mobile-display.png)
 
 ## Getting Started
 
