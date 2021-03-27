@@ -2,12 +2,12 @@
 
 Tweeter is a simple, single-page Twitter clone.
 
-Built upon on HTML, jQuuery, CSS, and AJAX for front-end, and Node and Express for back-end. 
+Built upon on HTML, jQuery, CSS, and AJAX for front-end, and Node and Express for back-end. 
 
-Current features include: 
-:heavy_check_mark: 140 character limit on tweets (Font changes to red as character limit is surpassed)
-:heavy_check_mark: Tweets pop out upon hover
-:heavy_check_mark: Dedicated mobile display
+Current features include:  
+:heavy_check_mark: 140 character limit on tweets (Font changes to red as character limit is surpassed)  
+:heavy_check_mark: Tweets pop out upon hover  
+:heavy_check_mark: Dedicated mobile display  
 
 
 
